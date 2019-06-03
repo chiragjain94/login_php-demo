@@ -15,24 +15,34 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="nav navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="login.php">Login <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="register.php">Register</a>
         </li>
-        <li class="nav-item"><span class="nav-link" href="register.php">
-            <?php
-            session_start();
-            echo 'Welcome ' . $_SESSION['username'] . ' to our website';
-            ?></span>
-        </li>
       </ul>
+
+      <!-- Check for session value, if user has logged in, display his name and logout logo-->
+      <?php session_start();
+      if (isset($_SESSION['username'])) : ?>
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="nav-item">
+            <a href="logout.php" class="nav-link">Log out</a>
+          </li>
+          <li class="nav-item"><span class="nav-link" href="register.php">
+              <?php
+              echo 'Welcome,  ' . $_SESSION['username'] . '';
+              ?></span>
+          </li>
+        </ul>
+      <?php endif; ?>
+
     </div>
   </nav>
 </head>
-<!-- <a href="config/db.php">Click for config file</a> -->
 
 <body>
   <div class="container">

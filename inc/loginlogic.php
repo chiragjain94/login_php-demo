@@ -31,7 +31,7 @@ if (isset($_POST["submit"])) {
         $user = $stmt->fetch();
         //Store the username in session to echo it on next page.
         $_SESSION['username'] = $user['name'];
-        header("location:success.php");
+        header("location:index.php");
       } else {
         $message = "User not found. Enter correct details";
         $messageCss = "d-block";
