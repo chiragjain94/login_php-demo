@@ -12,7 +12,7 @@ require_once "inc/header.php";
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input type="text" class="form-control" name="password" value="<?php echo isset($_POST['password']) ? $password : ''; ?>">
+    <input type="password" class="form-control" name="password" value="<?php echo isset($_POST['password']) ? $password : ''; ?>">
   </div>
   <input type="submit" name="submit" class="btn btn-success">
 </form>
