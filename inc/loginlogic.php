@@ -1,5 +1,4 @@
 <?php
-require_once "config/db.php";
 $message = "";
 $messageCss = "d-none";
 

@@ -25,7 +25,9 @@
       </ul>
 
       <!-- Check for session value, if user has logged in, display his name and logout logo-->
-      <?php session_start();
+      <?php
+      require_once "config/config.php";
+
       if (isset($_SESSION['username'])) : ?>
         <ul class="nav navbar-nav navbar-right">
 
