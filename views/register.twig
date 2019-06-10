@@ -1,0 +1,26 @@
+{% extends 'partials/base.twig' %}
+{% block content %}
+<h2>Register</h2>
+<h4 class="alert p-0 d-none {{ messageCss }}">{{ message }}</h4>
+
+<form method="POST" action="register.php">
+  <div class="form-group">
+    <label>Name</label>
+       <input type="text" class="form-control" name="name" value="{{ name }}" required>
+</div>
+  <div class="form-group">
+    <label>Email</label>
+      <input type="text" class="form-control" name="email" value="{{ email }}" required>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+       <input type="password" class="form-control" name="password" value="{{ password }}" required>
+  </div>
+  <div class="form-group">
+    <label>Re-enter Password</label>
+        <input type="password" class="form-control" name="password2" value="{{ password2 }}" required>
+  </div>
+  <input type="submit" name="submit" class="btn btn-success">
+</form>
+
+{% endblock %}

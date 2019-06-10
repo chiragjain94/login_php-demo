@@ -1,9 +1,11 @@
 <?php
-require_once "classes/Database.php";
+require_once "Database.php";
 
 class User
 {
   private $database;
+  protected static $user = null;
+
   public function __construct()
   {
     $this->database = Database::initializeDatabase();
@@ -21,13 +23,10 @@ class User
     $sql = 'SELECT * FROM users WHERE email = ? && password = ?';
     $stmt = $this->database->executeSql($sql, [$email, $password]);
 
-    //Check if the entered value is available in database
     $count = $stmt->rowcount();
-
     if ($count > 0) {
       $user = $stmt->fetch();
-      $_SESSION['username'] = $user['name'];
-      return true;
+      return $user['email'];
     } else return false;
   }
 
@@ -35,5 +34,26 @@ class User
   {
     $sql = 'INSERT INTO users(name, email, password) VALUES(?,?,?)';
     $stmt = $this->database->executeSql($sql, [$name, $email, $password]);
+  }
+
+  public function getUser()
+  {
+    if (!isset($_SESSION['email'])) {
+      throw new Exception("User not logged in.");
+    }
+
+    if (isset(self::$user)) {
+      return self::$user;
+    }
+
+    $sql = 'SELECT * FROM users WHERE email = ?';
+    $stmt = $this->database->executeSql($sql, [$_SESSION['email']]);
+
+    $count = $stmt->rowcount();
+    if ($count > 0) {
+      self::$user = $stmt->fetch();
+      return self::$user;
+    }
+    throw new Exception("User not found.");
   }
 }

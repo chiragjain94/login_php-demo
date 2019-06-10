@@ -1,6 +1,5 @@
 <?php
-require_once "config/config.php";
-
+require_once ROOT_URL . '/config/config.php';
 class Database
 {
   private static $instance;
@@ -17,9 +16,7 @@ class Database
 
   private function initPDO()
   {
-    // Set DSN
     $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME;
-    // Create a PDO instance
     self::$pdo = new PDO($dsn, DB_USER, DB_PASSWORD);
   }
 
